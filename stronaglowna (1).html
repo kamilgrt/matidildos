@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strona Wycieczka</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+
+        <body>
+            <div class="navbar">
+                <a href="#atrakcje" onclick="scrollToSection(event, 'atrakcje')">Atrakcje</a>
+                <a href="#plan" onclick="scrollToSection(event, 'plan')">Plan</a>
+                <a href="#cennik">Cennik</a>
+                <a href="#kontakt">Kontakt</a>
+                <button class="navbar-toggle" aria-label="Menu" onclick="toggleNavbarMenu()">
+                    &#9776;
+                </button>
+            </div>
+            <div class="navbar-menu">
+                <a href="#atrakcje" onclick="scrollToSection(event, 'atrakcje')">Atrakcje</a>
+                <a href="#plan" onclick="scrollToSection(event, 'plan')">Plan</a>
+                <a href="#cennik">Cennik</a>
+                <a href="#kontakt">Kontakt</a>
+            </div>
+            <script>
+            function scrollToSection(event, id) {
+                event.preventDefault();
+                let section;
+                if (id === 'plan') {
+                    section = document.querySelector('.days-plan-modern');
+                } else {
+                    section = document.getElementById(id);
+                }
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                    window.location.hash = id;
+                }
+                document.querySelector('.navbar-menu').classList.remove('show');
+            }
+            function toggleNavbarMenu() {
+                document.querySelector('.navbar-menu').classList.toggle('show');
+            }
+            </script>
+            <style>
+            .navbar {
+                background: linear-gradient(90deg, #68b459 0%, #00790a 100%);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 60px;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+            .navbar a {
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 80px;
+                text-decoration: none;
+                font-size: 17px;
+                font-family: Arial, Helvetica, sans-serif;
+                transition: background-color 0.3s, color 0.3s;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+            }
+            .navbar a:hover {
+                background-color: #54a75b;
+                color: rgb(214, 214, 214);
+                border-radius: 10px;
+            }
+            .navbar-toggle {
+                display: none;
+                background: none;
+                border: none;
+                color: #f2f2f2;
+                font-size: 2rem;
+                margin-left: 16px;
+                cursor: pointer;
+            }
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(90deg, #68b459 0%, #00790a 100%);
+                z-index: 1001;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            }
+            .navbar-menu.show {
+                display: flex;
+            }
+            .navbar-menu a {
+                color: #f2f2f2;
+                padding: 18px 0;
+                text-align: center;
+                text-decoration: none;
+                font-size: 1.2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .navbar-menu a:last-child {
+                border-bottom: none;
+            }
+            @media (max-width: 900px) {
+                .navbar a {
+                    padding: 14px 32px;
+                    font-size: 16px;
+                }
+            }
+            @media (max-width: 600px) {
+                .navbar {
+                    justify-content: flex-end;
+                    height: 54px;
+                }
+                .navbar a {
+                    display: none;
+                }
+                .navbar-toggle {
+                    display: block;
+                }
+            }
+            </style>
+            <div class="atrakcje-section">
+            <div id="atrakcje" class="photos-container">
+                <div class="left-photo-block">
+                    <div class="photo-wrapper">
+                        <img src="krop.jpg" alt="Left Top Photo" class="photo left-photo">
+                        <div class="photo-text">Krupówki</div>
+                    </div>
+                    <div class="photo-wrapper">
+                        <img src="guba.jpg" alt="Left Bottom Photo" class="photo left-photo">
+                        <div class="photo-text">Gubałówka</div>
+                    </div>
+                </div>
+                <div class="right-photo-block">
+                    <div class="photo-wrapper">
+                        <img src="kregle.jpg" alt="Right Top Photo" class="photo right-photo">
+                        <div class="photo-text">Kręgle</div>
+                    </div>
+                    <div class="photo-wrapper">
+                        <img src="muz.jpg" alt="Right Bottom Photo" class="photo right-photo">
+                        <div class="photo-text">Muzeum Tatrzańskie</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-block">
+                <h2 class="atrakcje-title">Atrakcje</h2>
+                <p>Spacer po Krupówkach, zwiedzanie Cmentarza, widoki z Gubałówki, Muzeum Tatrzańskie i relaks na Kręglach wszystko, co najlepsze w Zakopanem, w jednym miejscu.</p>
+            </div></div>
+            <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            .atrakcje-title {
+                text-align: center;
+                font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+                font-weight: bold;
+                font-size: 30px;
+                margin-bottom: 20px;
+                color: #00790a;
+                letter-spacing: 1px;
+            }
+            .photos-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 80px 40px 0 40px;
+                gap: 40px;
+                
+            }
+            .atrakcje-section {
+                padding-bottom: 60px;
+                padding-top: 10px;
+                border-radius: 10px ;
+                background: #fff;
+                border-radius: 18px; 
+                box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+                max-width: 700px;
+                margin: 40px auto 0 auto;
+                padding: 40px 32px 32px 32px;
+            }
+            .left-photo-block {
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+            .right-photo-block {
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-end;
+            }
+            .photo-wrapper {
+                position: relative;
+                display: inline-block;
+            }
+            .photo {
+                width: 250px;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.25), 0 1.5px 4px rgba(0,0,0,0.18);
+                transition: transform 0.3s;
+                display: block;
+            }
+            .photo:hover {
+                transform: scale(1.07);
+            }
+            .photo-text {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #fff;
+                font-size: 22px;
+                font-weight: bold;
+                text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+                pointer-events: none;
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+                width: 90%;
+            }
+            .text-block {
+                margin: 30px auto 0 auto;
+                max-width: 700px;
+                align-self: center;
+                min-width: 200px;
+                text-align: center;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            </style>
+            </style>
+
+            <div class="slider">
+  <div class="slides">
+    <img src="gory1.jpg" alt="Zdjęcie 1">
+    <img src="gory2.jpg" alt="Zdjęcie 2">
+  </div>
+</div>
+<style>
+.slider {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
+  max-width: 760px;
+  margin: 40px auto;
+  padding: 0; 
+  
+}
+
+.slides {
+  display: flex;
+  width: 100%; 
+  transition: transform 1s ease-in-out;
+}
+
+.slides img {
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+</style>
+<script>
+let slideIndex = 0;
+const slides = document.querySelector('.slides');
+const slideCount = document.querySelectorAll('.slides img').length;
+
+function showSlides() {
+    if (slideIndex >= slideCount) {
+        slideIndex = 0;
+    }
+    slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    slideIndex++;
+}
+
+setInterval(showSlides, 3000);
+</script>
+            <div class="content">
+                <div class="days-plan-modern">
+                    <h2>Plan Wycieczki 3-dniowej</h2><br><h2>Cel Wycieczki:Zwiedzanie miasta i zapoznanie z kulturą i historią </h2>
+                        
+                    <ol class="days-list">
+                        <li>
+                            <div class="day-header" style="font-size:1.5rem; font-weight:bold;"><b>Dzień 1 - Środa </b></div>
+                            <ul>
+                                <li>Wyjazd autokarem rano</li>
+                                <li>Przyjazd do Zakopanego</li>
+                                <li>Zwiedzanie koscioła i Cmentarza na Pęksowym Brzyzku</li>
+                                <li>Spacer po Krupówkach</li>
+                                <li>Zakwaterowanie w hotelu od godziny 14</li>
+                                <li>Kręgle</li>
+                                <li>Odpoczynek w pokojach</li>
+                                <li>Cisza nocna po 22:00</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="day-header" style="font-size:1.5rem; font-weight:bold;"><b>Dzień 2 - Czwartek</b></div>
+                            <ul>
+                                <li>Śniadanie od 8:00 do 10:00</li>
+                                <li>Wjazd kolejką na Gubałówkę (widok na Tatry)</li>
+                                <li>Zwiedzanie Muzeum Tatrzańskiego, spacer po Krupówkach</li>
+                                <li>Odpoczynek w pokojach</li>
+                                <li>Wieczorny grill z kiełbaskami</li>
+                                <li>Cisza nocna po 22:00</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="day-header" style="font-size:1.5rem; font-weight:bold;"><b>Dzień 3 - Piątek</b></div>
+                            <ul>
+                                <li>Śniadanie od 8:00 do 10:00</li>
+                                <li>Wykwaterowanie 10:00</li>
+                                <li>Zwiedzanie Wielkiej Krokwi oraz spacer po okolicy (możliwośc zjedzenia w lokalnych restauracjach)</li>
+                                <li>Wyjazd w drogę powrotną</li>
+                                <li>Powrót do domu</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <style>
+            .days-plan-modern {
+                background: #fff;
+                border-radius: 18px;
+                box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
+                padding: 40px 32px 32px 32px;
+                margin: 40px auto 0 auto;
+                max-width: 700px;
+                font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+                color: #222;
+            }
+            .days-plan-modern h2 {
+                text-align: center;
+                color: #00790a;
+                margin-bottom: 32px;
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+            .days-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .days-list > li {
+                margin-bottom: 32px;
+                background: linear-gradient(90deg, #e8f5e9 0%, #f1f8e9 100%);
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(104,180,89,0.07);
+                padding: 24px 20px 18px 20px;
+                transition: box-shadow 0.2s, transform 0.2s;
+            }
+            .days-list > li:hover {
+                box-shadow: 0 6px 24px rgba(104,180,89,0.13);
+                transform: scale(1.04);
+                background: #e8f5e9;
+            }
+            .day-header {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #388e3c;
+                margin-bottom: 12px;
+                letter-spacing: 0.5px;
+            }
+            .days-list ul {
+                margin: 0;
+                padding-left: 22px;
+            }
+            .days-list ul li {
+                margin-bottom: 7px;
+                font-size: 1rem;
+                line-height: 1.6;
+                position: relative;
+            }
+            .days-list ul li:before {
+                content: "•";
+                color: #68b459;
+                font-size: 1.2em;
+                position: absolute;
+                left: -16px;
+                top: 0;
+            }
+            @media (max-width: 600px) {
+                .days-plan-modern {
+                    padding: 18px 6px 18px 6px;
+                }
+                .days-list > li {
+                    padding: 14px 8px 10px 8px;
+                }
+            }
+            </style>
+            <div id="cennik" class="pricing-section" style="background: #fff; border-radius: 18px; box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08); padding: 40px 32px 32px 32px; margin: 40px auto 0 auto; max-width: 700px;">
+                <h2 class="pricing-title">Cennik</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                    </div>
+                    <table class="pricing-table-modern">
+                        <thead>
+                            <tr>
+                                <th>Usługa</th>
+                                <th>Cena</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Koszt Całej Wycieczki</td>
+                                <td> zł</td>
+                            </tr>
+                            <tr>
+                                <td>Hotel z Śniadaniem</td>
+                                <td>296.5zł</td>
+                            </tr>
+                            <tr>
+                                <td>Autokar</td>
+                                <td>zł</td>
+                            </tr>
+                            <tr>
+                                <td>Zwiedzanie cmentarza</td>
+                                <td>3 zł</td>
+                            </tr>
+                             <tr>
+                                <td>kręgle</td>
+                                <td>20 zł</td>
+                            </tr>
+                             <tr>
+                                <td>gubałowka</td>
+                                <td>41 zł</td>
+                                
+                            </tr>
+                             <tr>
+                                <td>Muzeum Tatrzańskie</td>
+                                <td>11 zł</td>
+                            </tr>
+                            <tr>
+                                <td>Za Zniszczenia (do zwrotu)</td>
+                                <td>10 zł</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <style>
+                    .pricing-title {
+                        text-align: center;
+                        font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+                        font-weight: bold;
+                        font-size: 40px;
+                        margin-bottom: 32px;
+                        color: #00790a;
+                        letter-spacing: 1px;
+                    }
+                    .pricing-table-modern {
+                        margin: 36px auto 60px auto;
+                        border-collapse: separate;
+                        border-spacing: 0;
+                        width: 100%;
+                        max-width: 520px;
+                        font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+                        background: #fff;
+                        border-radius: 18px;
+                        box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
+                        overflow: hidden;
+                    }
+                    .pricing-table-modern thead tr {
+                        background: linear-gradient(90deg, #e8f5e9 0%, #b2dfdb 100%);
+                    }
+                    .pricing-table-modern th, .pricing-table-modern td {
+                        padding: 18px 20px;
+                        text-align: left;
+                    }
+                    .pricing-table-modern th {
+                        font-size: 1.1rem;
+                        color: #00790a;
+                        font-weight: 700;
+                        border-bottom: 2px solid #b2dfdb;
+                        letter-spacing: 0.5px;
+                    }
+                    .pricing-table-modern tbody tr {
+                        transition: background 0.2s;
+                    }
+                    .pricing-table-modern tbody tr:nth-child(even) {
+                        background: #f8fafc;
+                    }
+                    .pricing-table-modern tbody tr:hover {
+                        background: #e8f5e9;
+                    }
+                    .pricing-table-modern td {
+                        font-size: 1rem;
+                        color: #222;
+                        border-bottom: 1px solid #e0e0e0;
+                    }
+                    .pricing-table-modern tbody tr:last-child td {
+                        border-bottom: none;
+                    }
+                    @media (max-width: 600px) {
+                        .pricing-title {
+                            font-size: 1.3rem;
+                        }
+                        .pricing-table-modern, .pricing-table-modern th, .pricing-table-modern td {
+                            font-size: 0.97rem;
+                            padding: 12px 8px;
+                        }
+                    }
+                </style>
+            </div>
+            <div id="kontakt" class="contact-section">
+                <h2 class="contact-title">Kontakt</h2>
+                <div class="contact-cards">
+                    <div class="contact-card">
+                        <span class="contact-icon">&#128222;</span>
+                        <span class="contact-label">Telefon:</span>
+                        <span class="contact-value"></span>
+                    </div>
+                    <div class="contact-card">
+                        <span class="contact-icon">&#9993;</span>
+                        <span class="contact-label">Email:</span>
+                        <span class="contact-value"></span>
+                    </div>
+                </div>
+            </div>
+            <style>
+            .contact-section {
+                background: #fff;
+                border-radius: 18px;
+                box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.08);
+                padding: 40px 32px 32px 32px;
+                margin: 40px auto 40px auto;
+                max-width: 700px;
+                font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            }
+            .contact-title {
+                text-align: center;
+                font-weight: bold;
+                font-size: 2rem;
+                margin-bottom: 32px;
+                color: #00790a;
+                letter-spacing: 1px;
+            }
+            .contact-cards {
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+            .contact-card {
+                display: flex;
+                align-items: center;
+                background: linear-gradient(90deg, #e8f5e9 0%, #b2dfdb 100%);
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(104,180,89,0.07);
+                padding: 18px 28px;
+                min-width: 260px;
+                font-size: 1.1rem;
+                transition: box-shadow 0.2s, transform 0.2s;
+            }
+            .contact-card:hover {
+                box-shadow: 0 6px 24px rgba(104,180,89,0.13);
+                transform: scale(1.04);
+            }
+            .contact-icon {
+                font-size: 1.7rem;
+                margin-right: 16px;
+                color: #00790a;
+            }
+            .contact-label {
+                font-weight: 600;
+                margin-right: 8px;
+                color: #388e3c;
+            }
+            .contact-value {
+                color: #222;
+                word-break: break-all;
+            }
+            @media (max-width: 600px) {
+                .contact-section {
+                    padding: 18px 6px 18px 6px;
+                }
+                .contact-card {
+                    padding: 12px 8px;
+                    font-size: 1rem;
+                    min-width: 180px;
+                }
+                .contact-title {
+                    font-size: 1.3rem;
+                }
+            }
+             footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #888;
+            text-align: center;
+        }
+            </style>
+        </body>
+<footer>
+        &copy; 2026 Kamil Grotecki
+    </footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
