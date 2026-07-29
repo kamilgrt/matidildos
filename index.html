@@ -113,5 +113,12 @@ setInterval(aktualizujCzas, 1000);
 aktualizujCzas();
 
   </script>
+    <script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+navigator.serviceWorker.register("service-worker.js");
+}
+</script>
 </body>
 </html>
