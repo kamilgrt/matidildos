@@ -1,29 +1,486 @@
-body{
-
-background:#121212;
-
-color:white;
-
-font-family:Arial;
-
-text-align:center;
-
-padding:40px;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-button{
 
-background:#0d6efd;
+.header {
+    height: 60px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    background: white;
+}
 
-color:white;
+.logo {
+    width: 36px;
+    height: 36px;
+    background: #2d5f90;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-border:none;
+.notification {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #222;
+}
 
-padding:15px 30px;
+.notification:hover {
+    color: #007bff;
+}
 
-font-size:20px;
+.documents-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 20px;
+}
 
-border-radius:10px;
+.documents-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2c2c2e;
+  margin: 0;
+}
 
+.documents-header .actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+}
+
+.documents-header button {
+  border: none;
+  background-color: #e8f0fe;
+  color: #3b73e8;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.documents-header button:hover {
+  background-color: #d2e3fc;
+}
+
+.documents-header .btn-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  background-color: rgba(108, 181, 250, 0.274);
+}
+
+.documents-header .btn-text {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: rgba(108, 181, 250, 0.274);
+  
+}
+/* Wyśrodkowanie na całym ekranie */
+
+
+.card {
+  /* Sztywny margines 20px z każdej strony + wyśrodkowanie w poziomie */
+  margin: 20px auto;
+  width: calc(100% - 30px);
+  max-width: 400px;
+  
+  /* Elastyczne proporcje karty */
+  aspect-ratio: 1.75 / 1;
+  min-height: 200px;
+  
+  /* Wygląd i układ */
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 6cqi 6cqi 4cqi 6cqi;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  container-type: inline-size;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Różowy pasek na dole */
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, #e91e63, #ff80ab);
+}
+
+/* Ikona profilu */
+.card-icon {
+  width: 18cqw;
+  height: 18cqw;
+  max-width: 44px;
+  max-height: 44px;
+  min-width: 34px;
+  min-height: 34px;
+  background-color: #fce4ec;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon svg {
+  width: 55%;
+  height: 55%;
+  fill: #e91e63;
+}
+
+/* Stopka karty */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.card-title {
+  font-size: clamp(14px, 4.5cqw, 18px);
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.card-btn {
+  background: none;
+  border: none;
+  color: #4a4a4a;
+  font-size: clamp(12px, 3.8cqw, 15px);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+}
+
+.arrow-icon {
+  width: 14px;
+  height: 14px;
+}
+/* Kontener siatki z marginesem 20px oraz automatycznym dopasowaniem */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 12px;
+  width: calc(100% - 40px);
+  max-width: 380px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Pojedynczy element */
+.service-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* Biały kafel tła dla ikony */
+.icon-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #ffffff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  margin-bottom: 8px;
+  transition: transform 0.15s ease;
+}
+
+.service-item:hover .icon-box {
+  transform: translateY(-2px);
+}
+
+/* Kolorowa kropka z ikoną */
+.icon-circle {
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-circle svg {
+  width: 55%;
+  height: 55%;
+  fill: #ffffff;
+}
+
+/* Kolory tła ikonek */
+.bg-blue { background-color: #0056a8; }
+.bg-pink { background-color: #d81b60; }
+.bg-light-blue { background-color: #3b82f6; }
+.bg-orange { background-color: #e65100; }
+.bg-turquoise { background-color: #14b8a6; }
+.bg-olive { background-color: #556b2f; }
+
+/* Etykieta pod ikoną */
+.service-label {
+  font-size: 12px;
+  line-height: 1.25;
+  color: #333333;
+  font-weight: 400;
+  word-break: break-word;
+}
+/* Pasek nawigacyjny na samym dole ekranu */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-top: 1px solid #eef2f6;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+  z-index: 1000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding-bottom: env(safe-area-inset-bottom); /* Wsparcie dla pasków na nowszych telefonach */
+}
+
+/* Przyciski nawigacyjne */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #555555;
+  font-size: 11px;
+  font-weight: 500;
+  gap: 3px;
+  flex: 1;
+}
+
+/* Kontener na ikonę */
+.nav-item .icon-wrapper {
+  width: 48px;
+  height: 26px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.nav-item svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Aktywny element (Start) */
+.nav-item.active {
+  color: #1952a5;
+  font-weight: 600;
+}
+
+.nav-item.active .icon-wrapper {
+  background-color: #e8f0fe;
+}
+/* Górny pasek nawigacji */
+.top-navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 100;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Wyśrodkowany tytuł */
+.top-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #2b5b9a;
+  margin: 0;
+  text-align: center;
+}
+
+/* Przycisk edycji (ołówek) przyklejony do prawej krawędzi */
+.edit-btn {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2b5b9a;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.edit-btn:hover {
+  background-color: rgba(43, 91, 154, 0.08);
+}
+
+.edit-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Kontener z przesunięciem w dół (margin-top: 24px) */
+.documents-container {
+  width: 100%;
+  margin-top: 24px; /* Przesunięcie całej sekcji w dół */
+  padding: 0 20px 90px 20px;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Tytuł sekcji z większym odstępem od spodu (margin-bottom: 24px) */
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0 0 24px 0; /* Zwiększony odstęp poniżej napisu */
+}
+
+/* Lista elementów */
+.documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+  
+}
+
+/* Kafel dokumentu */
+.doc-item {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 22px 18px; /* Zwiększony padding (wcześniej 16px) zwiększa wysokość kafelka */
+  min-height: 72px;    /* Gwarantowana minimalna wysokość */
+  border-radius: 18px;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.doc-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Lekko powiększone ikony proporcjonalnie do wyższego kafelka */
+.doc-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
+.doc-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Kolory ikonek */
+.icon-pink { background-color: #fce4ec; color: #e91e63; }
+.icon-teal { background-color: #e0f2f1; color: #00897b; }
+.icon-green { background-color: #e8f5e9; color: #2e7d32; }
+.icon-dark-green { background-color: #e8f5e9; color: #1b5e20; }
+.icon-navy { background-color: #e8eaf6; color: #1a237e; }
+
+/* Nazwa dokumentu */
+.doc-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #2c2c2e;
+  flex: 1;
+}
+
+.doc-name.no-icon {
+  margin-left: 4px;
+}
+
+/* Strzałka po prawej */
+.chevron {
+  width: 18px;
+  height: 18px;
+  color: #999999;
+  flex-shrink: 0;
+}
+
+/* Przycisk 'Dodaj dokument' */
+.add-doc-btn {
+  width: 100%;
+  height: 52px;
+  background-color: #0052a5;
+  color: #ffffff;
+  border: none;
+  border-radius: 26px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 82, 165, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.add-doc-btn:hover {
+  background-color: #003d7c;
+}
+
+.add-doc-btn .plus {
+  font-size: 20px;
+  font-weight: 400;
 }

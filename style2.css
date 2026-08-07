@@ -1,0 +1,426 @@
+body {
+    background-color: #f3f4f9;    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Nagłówek dla mDowodu */
+.header-dowod {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background-color: #ffffff; /* Tło pasujące do całego interfejsu */[cite: 2]
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  z-index: 100;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;[cite: 2]
+  transition: background-color 0.3s ease;
+}
+
+/* Przycisk strzałki w lewo (przyklejony do lewej krawędzi) */
+.back-btn {
+  position: absolute;
+  left: 16px;[cite: 2]
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000; /* Kolor ikony */[cite: 2]
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: rgba(43, 91, 154, 0.08);[cite: 2]
+}
+
+.back-btn svg {
+  width: 22px;
+  height: 22px;[cite: 2]
+}
+
+/* Wyśrodkowana nazwa "mDowód" */
+.header-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #00060e;[cite: 2]
+  margin: 0;
+  text-align: center;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+.live-time {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;[cite: 2]
+  font-size: 13px;
+  color: #666666;[cite: 2]
+  text-align: center;
+  margin: 10px 0;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+/* Stylowanie przycisku 'Potwierdź swoje dane' */
+.confirm-btn {
+  width: calc(100% - 32px);
+  margin: 16px auto;[cite: 2]
+  display: flex;
+  align-items: center;
+  justify-content: space-between;[cite: 2]
+  background-color: #e4e3e3;[cite: 2]
+  border: 1px solid #e5e7eb;[cite: 2]
+  padding: 14px 16px;
+  border-radius: 16px;[cite: 2]
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);[cite: 2]
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.1s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;[cite: 2]
+}
+
+.confirm-btn:active {
+  transform: scale(0.99);[cite: 2]
+}
+
+.confirm-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px;[cite: 2]
+}
+
+.confirm-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background-color: #e8f2fe;[cite: 2]
+  color: #1a73e8;[cite: 2]
+  display: flex;
+  align-items: center;
+  justify-content: center;[cite: 2]
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.confirm-icon svg {
+  width: 22px;
+  height: 22px;[cite: 2]
+}
+
+.confirm-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #202124;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+.chevron-icon {
+  width: 18px;
+  height: 18px;
+  color: #70757a;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+/* OKIENKO POPUP (MODAL) */
+.modal-overlay {
+  display: none; /* Domyślnie ukryte */[cite: 2]
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);[cite: 2]
+  backdrop-filter: blur(3px);[cite: 2]
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;[cite: 2]
+}
+
+.modal-content {
+  position: relative;
+  background-color: #ffffff;[cite: 2]
+  width: 100%;
+  max-width: 340px;[cite: 2]
+  border-radius: 20px;
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);[cite: 2]
+  animation: popupAnim 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);[cite: 2]
+  transition: background-color 0.3s ease;
+}
+
+@keyframes popupAnim {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;[cite: 2]
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #70757a;[cite: 2]
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-title {
+  margin: 0 0 12px 0;[cite: 2]
+  font-size: 18px;
+  color: #202124;[cite: 2]
+  font-family: Arial, Helvetica, sans-serif;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+/* Kod 6-cyfrowy */
+.code-display {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #1a73e8;[cite: 2]
+  margin-bottom: 16px;[cite: 2]
+  font-family: Arial, Helvetica, sans-serif;[cite: 2]
+}
+
+/* Kontener na Kod QR */
+.qr-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;[cite: 2]
+}
+
+.qr-container img, .qr-container canvas {
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #f0f0f0;[cite: 2]
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.timer-text {
+  font-size: 14px;
+  color: #5f6368;[cite: 2]
+  margin-bottom: 10px;[cite: 2]
+  font-family: Arial, Helvetica, sans-serif;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+/* Pasek postępu */
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background-color: #e8eaed;[cite: 2]
+  border-radius: 3px;
+  overflow: hidden;[cite: 2]
+  transition: background-color 0.3s ease;
+}
+
+.progress-bar-fill {
+  width: 100%;
+  height: 100%;
+  background-color: #1a73e8;[cite: 2]
+  /* Animacja paska od prawej do lewej */
+  transition: width 0.1s linear;[cite: 2]
+}
+
+img {
+    width: 100%;
+    text-align: center;[cite: 2]
+}
+
+/* Karta "Ostatnia aktualizacja" dopasowana do pozostałych */
+.confirm-btn-2 {
+  width: calc(100% - 32px);
+  margin: 16px auto;[cite: 2]
+  background-color: #e2e2e2; /* Szare tło idealnie takie jak przyciski wyżej */[cite: 2]
+  border-radius: 20px;       /* Jednakowe zaokrąglenie jak w przyciskach wyżej */[cite: 2]
+  border: none;
+  padding: 16px 18px;[cite: 2]
+  margin-top: 12px;[cite: 2]
+  display: flex;
+  justify-content: space-between;[cite: 2]
+  align-items: center;[cite: 2]
+  box-sizing: border-box;[cite: 2]
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;[cite: 2]
+  transition: background-color 0.3s ease;
+}
+
+.delete-icon {
+  width: 24px;
+  height: 24px;[cite: 2]
+  color: #dc2626; /* Czerwony kolor ikony */[cite: 2]
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;[cite: 2]
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;[cite: 2]
+}
+
+.delete-icon:hover {
+  opacity: 0.8;[cite: 2]
+}
+
+.delete-icon:active {
+  transform: scale(0.95);[cite: 2]
+}
+
+.delete-icon svg {
+  width: 100%;
+  height: 100%;[cite: 2]
+}
+
+/* Teksty po lewej stronie */
+.confirm-btn-2-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;[cite: 2]
+}
+
+.confirm-btn-2-label {
+  font-size: 13px;
+  color: #666666;[cite: 2]
+  font-weight: 400;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+.confirm-btn-2-date {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;[cite: 2]
+  transition: color 0.3s ease;
+}
+
+/* Przycisk "Aktualizuj" po prawej stronie */
+.confirm-btn-2-action {
+  background-color: #d8e8ff; /* Jasnobłękitna pigułka */[cite: 2]
+  color: #0056bd;            /* Ciemnoniebieski napis */[cite: 2]
+  border: none;
+  border-radius: 999px;      /* Zaokrąglona pigułka */[cite: 2]
+  padding: 8px 18px;[cite: 2]
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease, color 0.3s ease;[cite: 2]
+}
+
+.confirm-btn-2-action:hover {
+  background-color: #c4dcff;[cite: 2]
+}
+
+.confirm-btn-2-action:active {
+  transform: scale(0.96);[cite: 2]
+}
+
+.del-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: #ff0000;[cite: 2]
+}
+
+/* ==========================================================================
+   TRYB CIEMNY (DARK MODE)
+   ========================================================================== */
+
+.dark-mode body {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-mode .header-dowod {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .back-btn {
+  color: #ffffff;
+}
+
+.dark-mode .back-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .header-title {
+  color: #ffffff;
+}
+
+.dark-mode .live-time {
+  color: #a0a0a0;
+}
+
+.dark-mode .confirm-btn {
+  background-color: #1e1e1e;
+  border-color: #2c2c2c;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .confirm-icon {
+  background-color: #1a2733;
+  color: #64b5f6;
+}
+
+.dark-mode .confirm-text {
+  color: #e0e0e0;
+}
+
+.dark-mode .chevron-icon {
+  color: #9e9e9e;
+}
+
+.dark-mode .modal-content {
+  background-color: #1e1e1e;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .modal-close {
+  color: #a0a0a0;
+}
+
+.dark-mode .modal-title {
+  color: #ffffff;
+}
+
+.dark-mode .code-display {
+  color: #64b5f6;
+}
+
+.dark-mode .qr-container img, 
+.dark-mode .qr-container canvas {
+  background-color: #ffffff; /* QR kod zachowuje białe tło dla czytelności skanera */
+  border-color: #333333;
+}
+
+.dark-mode .timer-text {
+  color: #a0a0a0;
+}
+
+.dark-mode .progress-bar-bg {
+  background-color: #333333;
+}
+
+.dark-mode .progress-bar-fill {
+  background-color: #64b5f6;
+}
+
+.dark-mode .confirm-btn-2 {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .confirm-btn-2-label {
+  color: #a0a0a0;
+}
+
+.dark-mode .confirm-btn-2-date {
+  color: #ffffff;
+}
+
+.dark-mode .confirm-btn-2-action {
+  background-color: #1a2733;
+  color: #64b5f6;
+}
+
+.dark-mode .confirm-btn-2-action:hover {
+  background-color: #243447;
+}

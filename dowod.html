@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dowod</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <header class="header-dowod">
+  <!-- Przycisk powrotu do poprzedniej strony -->
+  <a href="index.html" class="back-btn" aria-label="Wróć">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M19 12H5M12 19l-7-7 7-7"/>
+    </svg>
+  </a>
+
+  <!-- Wyśrodkowany tytuł -->
+  <h1 class="header-title">mDowód</h1>
+</header>
+<div class="live-time" id="liveTime">Czas: --:--:-- --.--.----</div>
+<img src="DOWOD.gif">
+
+<button class="confirm-btn" onclick="openModal()">
+  <div class="confirm-btn-left">
+    <div class="confirm-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 12l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 7a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="confirm-text">Potwierdź swoje dane</span>
+  </div>
+  <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<button class="confirm-btn">
+  <div class="confirm-btn-left">
+    <div class="confirm-icon">
+  <!-- NOWA IKONA: Wierne odwzorowanie przesłanego zdjęcia (Profil w ramce z checkiem) -->
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Ramka zewnętrzna (prostokąt) -->
+    <rect x="3" y="5" width="18" height="14" rx="2" ry="2" />
+    
+    <!-- Sylwetka osoby (Głowa i ramiona wyśrodkowane w lewej/środkowej części) -->
+    <circle cx="10" cy="11" r="2.5" />
+    <path d="M14 17c0-1.5-1.8-2.5-4-2.5s-4 1-4 2.5" />
+    
+    <!-- Mały checkmark/symbol po prawej stronie głowy -->
+    <path d="M16 10l1 1 2-2" stroke-width="1.5"/>
+  </svg>
+</div>
+    <span class="confirm-text">Dane Dokumentu</span>
+  </div>
+  <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<div class="confirm-btn-2">
+    <div class="confirm-btn-2-info">
+        <div class="confirm-btn-2-label">Ostatnia aktualizacja</div>
+        <div class="confirm-btn-2-date" id="dataAktualizacji">--.--.----</div>
+    </div>
+
+    <button class="confirm-btn-2-action" onclick="aktualizujData()">
+        Aktualizuj
+    </button>
+</div>
+<button class="confirm-btn">
+  <div class="confirm-btn-left">
+<div class="delete-icon">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Pokrywa kosza -->
+    <path d="M3 6h18" />
+    <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" />
+    <!-- Pojemnik -->
+    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+    <!-- Pionowe linie wewnątrz -->
+    <line x1="10" y1="11" x2="10" y2="17" />
+    <line x1="14" y1="11" x2="14" y2="17" />
+  </svg>
+</div>
+    <span class="del-text">Usuń Dokument</span>
+  </div>
+  <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</button>
+<!-- OKIENKO POPUP (MODAL) -->
+<div class="modal-overlay" id="qrModal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    
+    <h3 class="modal-title">Kod potwierdzający</h3>
+    
+    <!-- Wyświetlany 6-cyfrowy kod -->
+    <div class="code-display" id="generatedCode">------</div>
+    
+    <!-- Kontener na kod QR -->
+    <div class="qr-container" id="qrcode"></div>
+    
+    <!-- Odliczanie czasu -->
+    <div class="timer-text">Kod wygaśnie za: <span id="timerSeconds">30</span>s</div>
+    
+    <!-- Pasek postępu -->
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  let timerInterval;
+  let qrCodeInstance = null;
+  const TOTAL_TIME = 30; // Czas w sekundach
+
+  function openModal() {
+    // 1. Generowanie 6-cyfrowego kodu
+    const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
+    document.getElementById('generatedCode').textContent = randomCode;
+
+    // 2. Generowanie kodu QR przenoszącego do wyszukiwarki Google
+    const googleSearchUrl = `https://www.google.com/search?q=${randomCode}`;
+    const qrContainer = document.getElementById('qrcode');
+    qrContainer.innerHTML = ''; // czyszczenie poprzedniego QR
+
+    qrCodeInstance = new QRCode(qrContainer, {
+      text: googleSearchUrl,
+      width: 140,
+      height: 140,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // 3. Pokazanie okienka
+    const modal = document.getElementById('qrModal');
+    modal.style.display = 'flex';
+
+    // 4. Uruchomienie licznika czasu i paska postępu
+    startTimer();
+  }
+
+  function startTimer() {
+    let timeRemaining = TOTAL_TIME;
+    const timerDisplay = document.getElementById('timerSeconds');
+    const progressBar = document.getElementById('progressBar');
+
+    // Resetowanie paska do 100%
+    progressBar.style.width = '100%';
+    timerDisplay.textContent = timeRemaining;
+
+    const startTime = Date.now();
+    const endTime = startTime + TOTAL_TIME * 1000;
+
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+      const now = Date.now();
+      const leftMs = endTime - now;
+      
+      if (leftMs <= 0) {
+        clearInterval(timerInterval);
+        closeModal();
+      } else {
+        const secondsLeft = Math.ceil(leftMs / 1000);
+        timerDisplay.textContent = secondsLeft;
+        
+        // Obliczanie szerokości paska od 100% do 0%
+        const percentage = (leftMs / (TOTAL_TIME * 1000)) * 100;
+        progressBar.style.width = `${percentage}%`;
+      }
+    }, 100);
+  }
+
+  function closeModal() {
+    clearInterval(timerInterval);
+    document.getElementById('qrModal').style.display = 'none';
+  }
+
+  // Zamknięcie po kliknięciu poza okienkiem
+  function closeModalOnOverlay(event) {
+    if (event.target.id === 'qrModal') {
+      closeModal();
+    }
+  }
+</script>
+<script>
+  function updateTime() {
+    const now = new Date();
+
+    // Pobieranie godziny, minut i sekund z dopisywaniem zera z przodu (np. 09)
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+
+    // Pobieranie dnia, miesiąca i roku
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Miesiące są liczone od 0
+    const year = now.getFullYear();
+
+    // Formatowanie tekstu: "Czas: 14:33:21 28.08.2023"
+    const timeString = `Czas: ${hours}:${minutes}:${seconds} ${day}.${month}.${year}`;
+
+    // Wstawienie tekstu do elementu o id="liveTime"
+    document.getElementById('liveTime').textContent = timeString;
+  }
+
+  // Uruchomienie od razu i odświeżanie co 1 sekundę (1000 ms)
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+<script>
+const dataElement = document.getElementById("dataAktualizacji");
+
+// Odczyt zapisanej daty
+const zapisana = localStorage.getItem("ostatniaAktualizacja");
+
+if (zapisana) {
+    dataElement.textContent = zapisana;
+} else {
+    dataElement.textContent = "--.--.----";
+}
+
+function aktualizujData() {
+    const dzis = new Date();
+    
+    // Formatowanie daty na DD.MM.YYYY
+    const day = String(dzis.getDate()).padStart(2, '0');
+    const month = String(dzis.getMonth() + 1).padStart(2, '0');
+    const year = dzis.getFullYear();
+    const data = `${day}.${month}.${year}`;
+
+    dataElement.textContent = data;
+    localStorage.setItem("ostatniaAktualizacja", data);
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</html>
